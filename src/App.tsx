@@ -1,20 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+
+import { Accordion } from "./components/Accordion";
+import { Form } from "./components/Form";
+import reactLogo from "./assets/react.svg";
+import { useState } from "react";
+import viteLogo from "/vite.svg";
+
+const values = [
+  {
+    id: 1,
+    title: "What is React?",
+    content: "React is a JavaScript library for building user interfaces.",
+  },
+  {
+    id: 2,
+    title: "What is React2?",
+    content:
+      "21222222 React is a JavaScript library for building user interfaces.",
+  },
+  {
+    id: 3,
+    title: "What is React3?",
+    content:
+      "2333232332 React is a JavaScript library for building user interfaces.",
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Accordion data={values} />
+        <Form />
       </div>
       <h1>Vite + React</h1>
       <div className="card">
@@ -29,7 +48,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
