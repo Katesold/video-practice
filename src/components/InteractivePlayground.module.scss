@@ -1,0 +1,316 @@
+// Interactive Playground Styles
+// Live event generation and logging
+
+.playground {
+  min-height: 100vh;
+  background: var(--color-bg-primary, #0d1117);
+  color: var(--color-text-primary, #e6edf3);
+}
+
+.header {
+  background: linear-gradient(135deg, #161b22 0%, #1a2332 100%);
+  border-bottom: 1px solid var(--color-border, #30363d);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    background: linear-gradient(90deg, #e6edf3, #58a6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--color-text-secondary, #8b949e);
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+  }
+}
+
+.sessionInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-bg-tertiary, #21262d);
+  border-radius: 8px;
+
+  .sessionLabel {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #8b949e);
+  }
+
+  .sessionId {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #58a6ff;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Video section
+.videoSection {
+  display: flex;
+  flex-direction: column;
+}
+
+// Event log section
+.eventSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: calc(100vh - 200px);
+  min-height: 500px;
+}
+
+.eventHeader {
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .statItem {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #8b949e);
+
+    strong {
+      color: var(--color-text-primary, #e6edf3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 0.5rem 1rem;
+  background: var(--color-bg-secondary, #161b22);
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 6px;
+  color: var(--color-text-secondary, #8b949e);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--color-bg-tertiary, #21262d);
+    color: var(--color-text-primary, #e6edf3);
+  }
+
+  &.active {
+    background: #58a6ff;
+    border-color: #58a6ff;
+    color: white;
+  }
+}
+
+.clearBtn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 6px;
+  color: #f85149;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: rgba(248, 81, 73, 0.1);
+    border-color: #f85149;
+  }
+}
+
+.eventLog {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-bg-secondary, #161b22);
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--color-text-muted, #6e7681);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.eventItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-left: 3px solid;
+  background: var(--color-bg-tertiary, #21262d);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 0.5rem;
+  animation: slideIn 0.2s ease;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.eventMain {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eventIcon {
+  font-size: 0.875rem;
+}
+
+.eventType {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-primary, #e6edf3);
+}
+
+.productBadge {
+  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(163, 113, 247, 0.15);
+  color: #a371f7;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.eventDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.timestamp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem;
+  color: var(--color-text-muted, #6e7681);
+}
+
+.videoTime {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem;
+  color: #58a6ff;
+  background: rgba(88, 166, 255, 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+
+.amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3fb950;
+}
+
+// Raw JSON view
+.rawJson {
+  background: var(--color-bg-secondary, #161b22);
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 8px;
+  font-size: 0.75rem;
+
+  summary {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: var(--color-text-secondary, #8b949e);
+    user-select: none;
+
+    &:hover {
+      color: var(--color-text-primary, #e6edf3);
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: 1rem;
+    background: var(--color-bg-tertiary, #21262d);
+    border-radius: 0 0 8px 8px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    color: #8b949e;
+  }
+}
+
+.footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--color-border, #30363d);
+  background: var(--color-bg-secondary, #161b22);
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #8b949e);
+    text-align: center;
+
+    strong {
+      color: var(--color-text-primary, #e6edf3);
+    }
+  }
+}
+
+// Custom scrollbar for event log
+.eventLog::-webkit-scrollbar {
+  width: 6px;
+}
+
+.eventLog::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.eventLog::-webkit-scrollbar-thumb {
+  background: var(--color-border, #30363d);
+  border-radius: 3px;
+}
+
+.eventLog::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}

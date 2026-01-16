@@ -1,53 +1,35 @@
-import "./App.css";
-
-import { Accordion } from "./components/Accordion";
-import { Form } from "./components/Form";
-import reactLogo from "./assets/react.svg";
 import { useState } from "react";
-import viteLogo from "/vite.svg";
+import "./App.css";
+import { EventDashboard } from "./components/EventDashboard";
+import { InteractivePlayground } from "./components/InteractivePlayground";
 
-const values = [
-  {
-    id: 1,
-    title: "What is React?",
-    content: "React is a JavaScript library for building user interfaces.",
-  },
-  {
-    id: 2,
-    title: "What is React2?",
-    content:
-      "21222222 React is a JavaScript library for building user interfaces.",
-  },
-  {
-    id: 3,
-    title: "What is React3?",
-    content:
-      "2333232332 React is a JavaScript library for building user interfaces.",
-  },
-];
+type View = "dashboard" | "playground";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [view, setView] = useState<View>("playground");
 
   return (
-    <>
-      <div>
-        <Accordion data={values} />
-        <Form />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="app">
+      {/* Navigation */}
+      <nav className="app-nav">
+        <button
+          className={`nav-btn ${view === "playground" ? "active" : ""}`}
+          onClick={() => setView("playground")}
+        >
+          🎬 Interactive Video
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <button
+          className={`nav-btn ${view === "dashboard" ? "active" : ""}`}
+          onClick={() => setView("dashboard")}
+        >
+          📊 Analytics Dashboard
+        </button>
+      </nav>
+
+      {/* Content */}
+      {view === "dashboard" && <EventDashboard />}
+      {view === "playground" && <InteractivePlayground />}
+    </div>
   );
 }
 
